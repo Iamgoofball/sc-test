@@ -813,7 +813,8 @@ function SkillTreeTweakData:init(tweak_data)
 					[2] = {
 						upgrades = {
 							"player_pick_up_ammo_multiplier",
-							"player_pick_up_ammo_multiplier_2"
+							"player_pick_up_ammo_multiplier_2",
+							"player_regain_throwable_from_ammo_1"
 						},
 						cost = self.costs.hightierpro
 					}

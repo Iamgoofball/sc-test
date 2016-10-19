@@ -1,3 +1,5 @@
+if SC._data.sc_ai_toggle then
+
 function TeamAIMovement:on_SPOOCed( enemy_unit )
 	local difficulty = Global.game_settings and Global.game_settings.difficulty or "normal"
 	local difficulty_index = tweak_data:difficulty_to_index(difficulty)
@@ -12,4 +14,6 @@ function TeamAIMovement:on_SPOOCed( enemy_unit )
 	else
 		return "countered"
 	end
+end
+
 end

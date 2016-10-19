@@ -318,6 +318,9 @@ function UpgradesTweakData:_init_pd2_values()
 				--Fully Loaded
 				self.values.player.extra_ammo_multiplier = {1.25}
 				self.values.player.pick_up_ammo_multiplier = {1.35, 1.75}
+				self.values.player.regain_throwable_from_ammo = {
+					{chance = 0.02, chance_inc = 1.0}
+				}
 			--}
 		--}
 		

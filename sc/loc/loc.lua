@@ -164,13 +164,32 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Weapons", function(loc
 		["bm_menu_bonus_damage_p1_mod"] = "Small Damage Modifier",
 		["bm_menu_bonus_damage_p2_mod"] = "Large Damage Modifier",
 		["bm_menu_bonus_total_ammo_p1_mod"] = "Small Total Ammo Modifier",
-		["bm_menu_bonus_total_ammo_p3_mod"] = "Massive Total Ammo Modifier",			
+		["bm_menu_bonus_total_ammo_p3_mod"] = "Massive Total Ammo Modifier",
+
+		--Fixed names for SMGS to ARs--
+		["bm_w_olympic"] = "Para Rifle",
+		["bm_w_akmsu"] = "Krinkov Rifle",
+		["bm_w_hajk"] = "CR 805B Rifle",
+			
 	})
 end)
 
 end
 
 if SC._data.sc_ai_toggle then
+
+local r = LevelsTweakData.LevelType.Russia
+local ai_type = tweak_data.levels:get_ai_group_type()
+
+if ai_type == r then
+
+Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Ticker", function(loc)
+	LocalizationManager:add_localized_strings({
+		["hud_assault_assault"] = "Reaper Assault in Progress",
+	})
+end)
+
+end
 
 Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 	LocalizationManager:add_localized_strings({
@@ -356,7 +375,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 
 			--Bulletstorm--
 			["menu_ammo_reservoir_beta_sc"] = "Bulletstorm",
-			["menu_ammo_reservoir_beta_desc_sc"] = "BASIC: ##$basic##\nAmmo bags placed by you grant players the ability to shoot without depleting their ammunition for up to ##5## seconds after interacting with it. The more ammo players replenish, the longer the duration of the effect.\n\nNote: Does not apply to grenade launchers.\n\nACE: ##$pro##\nIncreases the base duration of the effect by up to ##15## seconds.",																								
+			["menu_ammo_reservoir_beta_desc_sc"] = "BASIC: ##$basic##\nAmmo bags placed by you grant players the ability to shoot without depleting their ammunition for up to ##5## seconds after interacting with it. The more ammo players replenish, the longer the duration of the effect.\n\nACE: ##$pro##\nIncreases the base duration of the effect by up to ##15## seconds.",																								
 
 			--Portable Saw
 			["menu_portable_saw_beta_sc"] = "Portable Saw",
@@ -372,7 +391,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 
 			--Fully Loaded--
 			["menu_bandoliers_beta_sc"] = "Fully Loaded",
-			["menu_bandoliers_desc_sc"] = "BASIC: ##$basic##\nYour total ammo capacity is increased by ##25%##.\n\nACE: ##$pro##\nIncreases your ammo pickup to ##175%## of the normal rate.",
+			["menu_bandoliers_desc_sc"] = "BASIC: ##$basic##\nYour total ammo capacity is increased by ##25%##.\n\nACE: ##$pro##\nIncreases your ammo pickup to ##175%## of the normal rate.\n\nYou gain a ##2%## chance to get a throwable from an ammo box.",
 									
 			--}
 		--}
@@ -632,7 +651,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Perk_Decks", function(
 		["menu_deck4_3_desc_sc"] = "Your chance to dodge is increased by ##10%##.",
 		["menu_deck4_5_desc_sc"] = "Your chance to dodge is increased by ##10%##.",
 		["menu_deck4_7_desc_sc"] = "Your chance to dodge is increased by ##10%##.",
-		["menu_deck5_3_desc_sc"] = "You can dual wield two weapons. These can be found under the Akimbo tab in the inventory menu.\n\n\Dual wielded weapons have a ##25%## stability penalty.\n\n\Your armor recovery rate is increased by an additional ##10%##.",
+		["menu_deck5_3_desc_sc"] = "Your akimbo weapons' stability penalty is set to ##25%.##\n\n\Your armor recovery rate is increased by an additional ##10%##.",
 		["menu_deck5_5_desc_sc"] = "Your armor recovery rate is increased by an additional ##10%##.",
 		["menu_deck5_7_desc_sc"] = "Your armor recovery rate is increased by an additional ##10%##.",
 		["menu_deck5_9_desc_sc"] = "Your armor recovery rate is increased by an additional ##10%##.\n\n\You no longer have a stability penalty with Akimbo weapons and increases the ammo capacity of your Akimbo weapons to ##125%##.\n\n\Deck completion Bonus: Your chance of getting a higher quality item during PAYDAY is increased by ##10%##.",
