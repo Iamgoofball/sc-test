@@ -2133,8 +2133,8 @@ function CharacterTweakData:_presets(tweak_data)
 	presets.gang_member_damage.headshot_dmg_mul = 1
 	presets.gang_member_damage.LIVES_INIT = 4
 	presets.gang_member_damage.explosion_damage_mul = 0
-	presets.gang_member_damage.REGENERATE_TIME = 3.415
-	presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.1
+	presets.gang_member_damage.REGENERATE_TIME = 2.34
+	presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.585
 	presets.gang_member_damage.DOWNED_TIME = tweak_data.player.damage.DOWNED_TIME
 	presets.gang_member_damage.TASED_TIME = tweak_data.player.damage.TASED_TIME
 	presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 50

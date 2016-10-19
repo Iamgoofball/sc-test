@@ -2711,8 +2711,6 @@ function SkillTreeTweakData:init(tweak_data)
 			deck8,
 			{
 				upgrades = {
-					"player_health_damage_reduction_1",
-					"player_yakuza_berserker",
 					"player_armor_regen_damage_health_ratio_threshold_multiplier",
 					"player_movement_speed_damage_health_ratio_threshold_multiplier",
 					"player_passive_loot_drop_multiplier"
