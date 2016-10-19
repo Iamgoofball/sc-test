@@ -9,7 +9,7 @@ function CharacterTweakData:init(tweak_data, presets)
 			if ai_type == r then
 				return "n"
 			else
-				return "d"
+				return "n"
 			end
 		end
 	}
