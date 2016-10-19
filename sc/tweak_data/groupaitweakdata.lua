@@ -46,12 +46,12 @@ function GroupAITweakData:_init_unit_categories(difficulty_index)
 		}
 	elseif difficulty_index == 6 then
 		self.special_unit_spawn_limits = {
-			tank = 4,
-			taser = 5,
-			boom = 3,
+			tank = 3,
+			taser = 4,
+			boom = 2,
 			spooc = 4,
-			shield = 6,
-			medic = 3,
+			shield = 5,
+			medic = 2,
 			phalanx_minion = 0
 		}
 	elseif difficulty_index == 7 then
@@ -346,6 +346,25 @@ function GroupAITweakData:_init_unit_categories(difficulty_index)
 			access = access_type_all,
 			special_type = "taser"
 		}
+	elseif difficulty_index == 6 then
+		self.unit_categories.CS_tazer = {
+			unit_types = {
+				america = {
+					Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
+					Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
+					Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
+					Idstring("units/payday2/characters/ene_grenadier_1/ene_grenadier_1")
+				},
+				russia = {
+					Idstring("units/pd2_dlc_mad/characters/ene_akan_cs_tazer_ak47_ass/ene_akan_cs_tazer_ak47_ass"),
+					Idstring("units/pd2_dlc_mad/characters/ene_akan_cs_tazer_ak47_ass/ene_akan_cs_tazer_ak47_ass"),
+					Idstring("units/pd2_dlc_mad/characters/ene_akan_cs_tazer_ak47_ass/ene_akan_cs_tazer_ak47_ass"),
+					Idstring("units/pd2_dlc_mad/characters/ene_akan_grenadier_1/ene_akan_grenadier_1"),
+				}
+			},
+			access = access_type_all,
+			special_type = "taser"
+		}
 	else 
 		self.unit_categories.CS_tazer = {
 			unit_types = {
@@ -524,7 +543,7 @@ function GroupAITweakData:_init_unit_categories(difficulty_index)
 			access = access_type_all
 		}
 	end
-	if difficulty_index < 6 then
+	if difficulty_index < 7 then
 		self.unit_categories.FBI_swat_M4 = {
 			unit_types = {
 				america = {
@@ -532,18 +551,6 @@ function GroupAITweakData:_init_unit_categories(difficulty_index)
 				},
 				russia = {
 					Idstring("units/pd2_dlc_mad/characters/ene_akan_fbi_swat_ak47_ass/ene_akan_fbi_swat_ak47_ass")
-				}
-			},
-			access = access_type_all
-		}
-	elseif difficulty_index < 7 then
-		self.unit_categories.FBI_swat_M4 = {
-			unit_types = {
-				america = {
-					Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3")
-				},
-				russia = {
-					Idstring("units/pd2_dlc_mad/characters/ene_akan_fbi_swat_ump/ene_akan_fbi_swat_ump")
 				}
 			},
 			access = access_type_all
@@ -573,7 +580,7 @@ function GroupAITweakData:_init_unit_categories(difficulty_index)
 			access = access_type_all
 		}
 	end
-	if difficulty_index < 6 then
+	if difficulty_index < 7 then
 		self.unit_categories.FBI_swat_R870 = {
 			unit_types = {
 				america = {
@@ -583,18 +590,6 @@ function GroupAITweakData:_init_unit_categories(difficulty_index)
 				russia = {
 					Idstring("units/pd2_dlc_mad/characters/ene_akan_fbi_swat_r870/ene_akan_fbi_swat_r870"),
 					Idstring("units/pd2_dlc_mad/characters/ene_akan_fbi_swat_ump/ene_akan_fbi_swat_ump")
-				}
-			},
-			access = access_type_all
-		}
-	elseif difficulty_index < 7 then
-		self.unit_categories.FBI_swat_R870 = {
-			unit_types = {
-				america = {
-					Idstring("units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2")
-				},
-				russia = {
-					Idstring("units/pd2_dlc_mad/characters/ene_akan_fbi_swat_r870/ene_akan_fbi_swat_r870")
 				}
 			},
 			access = access_type_all

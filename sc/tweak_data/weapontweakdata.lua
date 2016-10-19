@@ -2576,6 +2576,9 @@ Hooks:PostHook( WeaponTweakData, "init", "SC_weapons", function(self)
 	self.striker.spread.moving_standing = 4
 	self.striker.spread.moving_crouching = 3
 	self.striker.spread.moving_steelsight = 2
+	self.striker.kick.standing = self.new_m4.kick.standing
+	self.striker.kick.crouching = self.new_m4.kick.standing
+	self.striker.kick.steelsight = self.new_m4.kick.standing
 	self.striker.stats = {
 		damage = 64,
 		spread = 7,
@@ -4371,6 +4374,40 @@ Hooks:PostHook( WeaponTweakData, "init", "SC_weapons", function(self)
 	}
 	self.boot.panic_suppression_chance = 0.0
 	self.boot.stats_modifiers = {damage = 1}
+	self.rota.upgrade_blocks = {
+		weapon = {
+			"clip_ammo_increase"
+		}
+	}
+	self.rota.AMMO_MAX = 60
+	self.rota.AMMO_PICKUP = self:_pickup_chance(60, 1)
+	self.rota.spread.standing = 3.5
+	self.rota.spread.crouching = 2.5
+	self.rota.spread.steelsight = 1
+	self.rota.spread.moving_standing = 4
+	self.rota.spread.moving_crouching = 3
+	self.rota.spread.moving_steelsight = 2
+	self.rota.kick.standing = self.new_m4.kick.standing
+	self.rota.kick.crouching = self.new_m4.kick.standing
+	self.rota.kick.steelsight = self.new_m4.kick.standing
+	self.rota.fire_mode_data.fire_rate = 0.13953488372
+	self.rota.single.fire_rate = 0.13953488372
+	self.rota.panic_suppression_chance = 0.0
+	self.rota.damage_near = 900
+	self.rota.damage_far = 1800
+	self.rota.stats = {
+		damage = 64,
+		spread = 9,
+		recoil = 16,
+		spread_moving = 7,
+		zoom = 3,
+		concealment = 21,
+		suppression = 5,
+		alert_size = 5,
+		extra_ammo = 6,
+		total_ammo_mod = 21,
+		value = 1
+	}
 
 
 	--Custom weapons below--
@@ -4601,19 +4638,13 @@ WeaponTweakData.clone__create_table_structure = WeaponTweakData._create_table_st
 function WeaponTweakData:_create_table_structure()
 	self:clone__create_table_structure()
 	self.scar_npc = {
-		usage = "ak47",
+		usage = "m4",
 		sounds = {},
 		use_data = {},
 		auto = {}
 	}
 	self.m14_sniper_npc = {
 		usage = "m4",
-		sounds = {},
-		use_data = {},
-		auto = {}
-	}
-	self.m32_npc = {
-		usage = "r870",
 		sounds = {},
 		use_data = {},
 		auto = {}
