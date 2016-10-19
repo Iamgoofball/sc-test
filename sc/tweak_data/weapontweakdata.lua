@@ -2619,6 +2619,7 @@ Hooks:PostHook( WeaponTweakData, "init", "SC_weapons", function(self)
 		value = 1
 	}
 	self.ksg.panic_suppression_chance = 0.0
+	self.gre_m79.fire_mode_data.fire_rate = 3
 	self.gre_m79.spread.standing = 3.5
 	self.gre_m79.spread.crouching = 2.5
 	self.gre_m79.spread.steelsight = 1
@@ -3306,6 +3307,7 @@ Hooks:PostHook( WeaponTweakData, "init", "SC_weapons", function(self)
 	self.rpg7.kick.crouching = self.r870.kick.standing
 	self.rpg7.kick.steelsight = self.r870.kick.standing
 	self.rpg7.has_description = false
+	self.rpg7.fire_mode_data.fire_rate = 3
 	self.rpg7.AMMO_MAX = 3
 	self.rpg7.AMMO_PICKUP = {0.05, 0.45}
 	self.rpg7.timers.reload_not_empty = 6.3

@@ -15769,12 +15769,20 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
             	wpn_fps_upg_bonus_recoil_p1 = {},
             	wpn_fps_upg_bonus_spread_p1 = {},
             	wpn_fps_upg_bonus_spread_n1 = {},
-            	wpn_fps_upg_bonus_damage_p1 = {},
-            	wpn_fps_upg_bonus_total_ammo_p1 = {},
+            	wpn_fps_upg_bonus_damage_p1 = {
+			exclude_category = {"grenade_launcher", "crossbow", "bow"}
+		},
+            	wpn_fps_upg_bonus_total_ammo_p1 = {
+			exclude_category = {"grenade_launcher", "crossbow", "bow"}
+		},
             	wpn_fps_upg_bonus_concealment_p2 = {},
             	wpn_fps_upg_bonus_concealment_p3 = {},
-            	wpn_fps_upg_bonus_damage_p2 = {},
-            	wpn_fps_upg_bonus_total_ammo_p3 = {},
+            	wpn_fps_upg_bonus_damage_p2 = {
+			exclude_category = {"grenade_launcher", "crossbow", "bow"}
+		},
+            	wpn_fps_upg_bonus_total_ammo_p3 = {
+			exclude_category = {"grenade_launcher", "crossbow", "bow"}
+		},
 		wpn_fps_upg_bonus_sc_none = {}
         	}
         	local all_pass, weapon_pass, exclude_weapon_pass, category_pass, exclude_category_pass

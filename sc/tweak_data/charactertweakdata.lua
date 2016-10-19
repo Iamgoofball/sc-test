@@ -9,7 +9,7 @@ function CharacterTweakData:init(tweak_data, presets)
 			if ai_type == r then
 				return "n"
 			else
-				return "n"
+				return "d"
 			end
 		end
 	}
@@ -334,7 +334,7 @@ function CharacterTweakData:_init_fbi_heavy_swat(presets)
 	self.fbi_heavy_swat.speech_prefix_p2 = self._prefix_data_p2.swat()
 	self.fbi_heavy_swat.speech_prefix_count = 4
 	self.fbi_heavy_swat.access = "swat"
-	self.fbi_heavy_swat.dodge = presets.dodge.heavy
+	self.fbi_heavy_swat.dodge = presets.dodge.heavy_very_hard
 	self.fbi_heavy_swat.no_arrest = false
 	self.fbi_heavy_swat.chatter = presets.enemy_chatter.swat
 	self.fbi_heavy_swat.steal_loot = true
@@ -449,9 +449,9 @@ function CharacterTweakData:_init_gangster(presets)
 	self.gangster.no_retreat = true
 	self.gangster.weapon_voice = "3"
 	self.gangster.experience.cable_tie = "tie_swat"
-	self.gangster.speech_prefix_p1 = "l"
-	self.gangster.speech_prefix_p2 = "n"
-	self.gangster.speech_prefix_count = 4
+	self.gangster.speech_prefix_p1 = "th"
+	self.gangster.speech_prefix_p2 = nil
+	self.gangster.speech_prefix_count = 3
 	self.gangster.silent_priority_shout = "f37"
 	self.gangster.access = "gangster"
 	self.gangster.rescue_hostages = false
@@ -597,6 +597,47 @@ function CharacterTweakData:_init_hector_boss_no_armor(presets)
  	table.insert(self._enemy_list, "hector_boss_no_armor")
 end
 
+function CharacterTweakData:_init_chavez_boss(presets)
+	self.chavez_boss = deep_clone(presets.base)
+	self.chavez_boss.experience = {}
+	self.chavez_boss.weapon = deep_clone(presets.weapon.normal)
+	self.chavez_boss.detection = presets.detection.normal
+	self.chavez_boss.priority_shout = "f45"
+	self.chavez_boss.damage.hurt_severity = presets.hurt_severities.no_hurts
+	self.chavez_boss.HEALTH_INIT = 750
+	self.chavez_boss.headshot_dmg_mul = 3
+	self.chavez_boss.damage.explosion_damage_mul = 1
+	self.chavez_boss.move_speed = presets.move_speed.slow
+	self.chavez_boss.allowed_poses = {stand = true}
+	self.chavez_boss.no_retreat = true
+	self.chavez_boss.no_arrest = true
+	self.chavez_boss.surrender = nil
+	self.chavez_boss.ecm_vulnerability = 0
+	self.chavez_boss.ecm_hurts = {
+		ears = {min_duration = 0, max_duration = 0}
+	}
+	self.chavez_boss.weapon_voice = "1"
+	self.chavez_boss.experience.cable_tie = "tie_swat"
+	self.chavez_boss.access = "gangster"
+	self.chavez_boss.speech_prefix_p1 = "bb"
+	self.chavez_boss.speech_prefix_p2 = "n"
+	self.chavez_boss.speech_prefix_count = 1
+	self.chavez_boss.rescue_hostages = false
+	self.chavez_boss.melee_weapon = "fists_dozer"
+	self.chavez_boss.melee_weapon_dmg_multiplier = 1
+	self.chavez_boss.steal_loot = nil
+	self.chavez_boss.calls_in = nil
+	self.chavez_boss.chatter = presets.enemy_chatter.no_chatter
+	self.chavez_boss.use_radio = nil
+	self.chavez_boss.can_be_tased = false
+	self.chavez_boss.use_animation_on_fire_damage = false
+	self.chavez_boss.flammable = true
+	self.chavez_boss.can_be_tased = false
+	self.chavez_boss.immune_to_knock_down = true
+	self.chavez_boss.immune_to_concussion = true
+	table.insert(self._enemy_list, "chavez_boss")
+end
+
 function CharacterTweakData:_init_tank(presets)
 	self.tank = deep_clone(presets.base)
 	self.tank.experience = {}
@@ -634,6 +675,9 @@ function CharacterTweakData:_init_tank(presets)
 	self.tank.deathguard = true
 	self.tank.melee_weapon = "fists_dozer"
 	self.tank.melee_weapon_dmg_multiplier = 1
+	self.tank.melee_anims = {
+		"cbt_std_melee"
+	}
 	self.tank.critical_hits = {
 		damage_mul = 2
 	}
@@ -2133,8 +2177,8 @@ function CharacterTweakData:_presets(tweak_data)
 	presets.gang_member_damage.headshot_dmg_mul = 1
 	presets.gang_member_damage.LIVES_INIT = 4
 	presets.gang_member_damage.explosion_damage_mul = 0
-	presets.gang_member_damage.REGENERATE_TIME = 2.34
-	presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.585
+	presets.gang_member_damage.REGENERATE_TIME = 4
+	presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.5
 	presets.gang_member_damage.DOWNED_TIME = tweak_data.player.damage.DOWNED_TIME
 	presets.gang_member_damage.TASED_TIME = tweak_data.player.damage.TASED_TIME
 	presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 50
@@ -5857,7 +5901,7 @@ function CharacterTweakData:_presets(tweak_data)
 		{
 			r = 1000,
 			acc = {0.7, 0.95},
-			dmg_mul = 2,
+			dmg_mul = 1,
 			recoil = {3, 6},
 			mode = {
 				1,
@@ -5869,7 +5913,7 @@ function CharacterTweakData:_presets(tweak_data)
 		{
 			r = 2000,
 			acc = {0.7, 0.95},
-			dmg_mul = 2,
+			dmg_mul = 1,
 			recoil = {3, 6},
 			mode = {
 				1,
@@ -5881,7 +5925,7 @@ function CharacterTweakData:_presets(tweak_data)
 		{
 			r = 4000,
 			acc = {0.5, 0.95},
-			dmg_mul = 2,
+			dmg_mul = 1,
 			recoil = {4, 6},
 			mode = {
 				1,
@@ -8830,6 +8874,59 @@ function CharacterTweakData:_presets(tweak_data)
 				}
 			}
 		},
+		heavy_very_hard = {
+			speed = 1.1,
+			occasions = {
+				hit = {
+					chance = 0.75,
+					check_timeout = {0, 0},
+					variations = {
+						side_step = {
+							chance = 9,
+							timeout = {0, 7},
+							shoot_chance = 0.8,
+							shoot_accuracy = 0.5
+						},
+						roll = {
+							chance = 1,
+							timeout = {8, 10}
+						}
+					}
+				},
+				preemptive = {
+					chance = 0.25,
+					check_timeout = {1, 7},
+					variations = {
+						side_step = {
+							chance = 1,
+							timeout = {1, 7},
+							shoot_chance = 1,
+							shoot_accuracy = 0.7
+						}
+					}
+				},
+				scared = {
+					chance = 0.8,
+					check_timeout = {1, 2},
+					variations = {
+						side_step = {
+							chance = 5,
+							timeout = {1, 2},
+							shoot_chance = 0.5,
+							shoot_accuracy = 0.4
+						},
+						roll = {
+							chance = 1,
+							timeout = {8, 10}
+						},
+						dive = {
+							chance = 2,
+							timeout = {8, 10}
+						}
+					}
+				}
+			}
+		},
 		athletic_overkill = {
 			speed = 1.5,
 			occasions = {
@@ -9826,10 +9923,12 @@ function CharacterTweakData:_set_easy()
 	self:_set_specials_weapon_preset("normal")
 	self.flashbang_multiplier = 2
 	self.concussion_multiplier = 2
-	self.presets.gang_member_damage.HEALTH_INIT = 25
+	self.presets.gang_member_damage.HEALTH_INIT = 37.5
 	self.presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.6
-	self.old_hoxton_mission.HEALTH_INIT = 25
-	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 12.5
+	self.presets.gang_member_damage.REGENERATE_TIME = 4
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.5
+	self.old_hoxton_mission.HEALTH_INIT = 37.5
+	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 18.75
 	self.weap_unit_names[12] = Idstring("units/payday2/weapons/wpn_npc_scar_murkywater/wpn_npc_scar_murkywater")
 	self.weap_unit_names[18] = Idstring("units/payday2/weapons/wpn_npc_ump/wpn_npc_ump")
 	self.weap_unit_names[9] = Idstring("units/payday2/weapons/wpn_npc_mp5/wpn_npc_mp5")
@@ -9853,10 +9952,12 @@ function CharacterTweakData:_set_normal()
 	self:_set_specials_weapon_preset("normal")
 	self.flashbang_multiplier = 2
 	self.concussion_multiplier = 2
-	self.presets.gang_member_damage.HEALTH_INIT = 50
+	self.presets.gang_member_damage.HEALTH_INIT = 75
 	self.presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.55
-	self.old_hoxton_mission.HEALTH_INIT = 50
-	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 25
+	self.presets.gang_member_damage.REGENERATE_TIME = 4
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.5
+	self.old_hoxton_mission.HEALTH_INIT = 75
+	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 37.5
 	self.russian.weapon.weapons_of_choice = {
 		primary = Idstring("units/payday2/weapons/wpn_npc_beretta92/wpn_npc_beretta92"),
 		secondary = Idstring("units/payday2/weapons/wpn_npc_beretta92/wpn_npc_beretta92")
@@ -9944,10 +10045,12 @@ function CharacterTweakData:_set_hard()
 	self:_set_specials_weapon_preset("normal")
 	self.flashbang_multiplier = 2
 	self.concussion_multiplier = 2
-	self.presets.gang_member_damage.HEALTH_INIT = 75
+	self.presets.gang_member_damage.HEALTH_INIT = 112.5
 	self.presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.5
-	self.old_hoxton_mission.HEALTH_INIT = 75
-	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 37.5
+	self.presets.gang_member_damage.REGENERATE_TIME = 4
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.5
+	self.old_hoxton_mission.HEALTH_INIT = 112.5
+	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 56.25
 	self.russian.weapon.weapons_of_choice = {
 		primary = Idstring("units/payday2/weapons/wpn_npc_beretta92/wpn_npc_beretta92"),
 		secondary = Idstring("units/payday2/weapons/wpn_npc_beretta92/wpn_npc_beretta92")
@@ -10035,10 +10138,12 @@ function CharacterTweakData:_set_overkill()
 	self:_set_specials_weapon_preset("good")
 	self.flashbang_multiplier = 2
 	self.concussion_multiplier = 2
-	self.presets.gang_member_damage.HEALTH_INIT = 100
+	self.presets.gang_member_damage.HEALTH_INIT = 150
 	self.presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.45
-	self.old_hoxton_mission.HEALTH_INIT = 100
-	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 50
+	self.presets.gang_member_damage.REGENERATE_TIME = 4
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.5
+	self.old_hoxton_mission.HEALTH_INIT = 150
+	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 75
 	self.russian.weapon.weapons_of_choice = {
 		primary = Idstring("units/payday2/weapons/wpn_npc_mp5/wpn_npc_mp5"),
 		secondary = Idstring("units/payday2/weapons/wpn_npc_mp5/wpn_npc_mp5")
@@ -10171,6 +10276,68 @@ function CharacterTweakData:_set_overkill()
 		}
 	}
 	self:_process_weapon_usage_table(self.tank_hw.weapon)
+	self.sniper.weapon.m4.FALLOFF = {
+		{
+			r = 1000,
+			acc = {0.7, 0.95},
+			dmg_mul = 2,
+			recoil = {3, 6},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			r = 2000,
+			acc = {0.7, 0.95},
+			dmg_mul = 2,
+			recoil = {3, 6},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			r = 4000,
+			acc = {0.5, 0.95},
+			dmg_mul = 2,
+			recoil = {4, 6},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			r = 6000,
+			acc = {0.5, 0.85},
+			dmg_mul = 1,
+			recoil = {4, 6},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			r = 8000,
+			acc = {0.5, 0.75},
+			dmg_mul = 1,
+			recoil = {4, 6},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		}
+	}
 end
 
 function CharacterTweakData:_set_overkill_145()
@@ -10192,10 +10359,12 @@ function CharacterTweakData:_set_overkill_145()
 	self:_set_specials_weapon_preset("expert")
 	self.flashbang_multiplier = 2
 	self.concussion_multiplier = 2
-	self.presets.gang_member_damage.HEALTH_INIT = 125
+	self.presets.gang_member_damage.HEALTH_INIT = 187.5
 	self.presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.4
-	self.old_hoxton_mission.HEALTH_INIT = 125
-	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 62.5
+	self.presets.gang_member_damage.REGENERATE_TIME = 3.4
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.425
+	self.old_hoxton_mission.HEALTH_INIT = 187.5
+	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 93.75
 	self:_multiply_all_speeds(1.05, 1.05)
 	self.sniper.weapon.ak47.FALLOFF = {
 		{
@@ -10407,10 +10576,12 @@ function CharacterTweakData:_set_easy_wish()
 	self:_set_characters_melee_preset("3")
 	self:_set_specials_weapon_preset("deathwish")
 	self:_multiply_all_speeds(1.05, 1.1)
-	self.presets.gang_member_damage.HEALTH_INIT = 150
+	self.presets.gang_member_damage.HEALTH_INIT = 225
 	self.presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
-	self.old_hoxton_mission.HEALTH_INIT = 150
-	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 75
+	self.old_hoxton_mission.HEALTH_INIT = 225
+	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 112.5
+	self.presets.gang_member_damage.REGENERATE_TIME = 2.4
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.3
 	self.flashbang_multiplier = 2
 	self.concussion_multiplier = 2
 	self.sniper.weapon.ak47.FALLOFF = {
@@ -10659,10 +10830,12 @@ function CharacterTweakData:_set_overkill_290()
 	self:_set_characters_melee_preset("3")
 	self:_set_specials_weapon_preset("deathwish")
 	self:_multiply_all_speeds(1.05, 1.1)
-	self.presets.gang_member_damage.HEALTH_INIT = 175
+	self.presets.gang_member_damage.HEALTH_INIT = 262.5
 	self.presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.3
-	self.old_hoxton_mission.HEALTH_INIT = 175
-	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 87.5
+	self.old_hoxton_mission.HEALTH_INIT = 262.5
+	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 131.25
+	self.presets.gang_member_damage.REGENERATE_TIME = 2.4
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.3
 	self.flashbang_multiplier = 2
 	self.concussion_multiplier = 2
 	self.sniper.weapon.ak47.FALLOFF = {
@@ -10911,10 +11084,12 @@ function CharacterTweakData:_set_sm_wish()
 	self:_set_characters_melee_preset("3")
 	self:_set_specials_weapon_preset("sm_wish")
 	self:_multiply_all_speeds(2.05, 2.1)
-	self.presets.gang_member_damage.HEALTH_INIT = 200
+	self.presets.gang_member_damage.HEALTH_INIT = 300
 	self.presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.25
-	self.old_hoxton_mission.HEALTH_INIT = 200
-	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 100
+	self.old_hoxton_mission.HEALTH_INIT = 300
+	self.presets.gang_member_damage.BLEED_OUT_HEALTH_INIT = 150
+	self.presets.gang_member_damage.REGENERATE_TIME = 2.4
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.3
 	self.flashbang_multiplier = 2
 	self.concussion_multiplier = 2
 	self.sniper.weapon.ak47.FALLOFF = {
@@ -11211,6 +11386,7 @@ function CharacterTweakData:_multiply_all_hp(hp_mul, hs_mul)
 	self.gangster.HEALTH_INIT = self.gangster.HEALTH_INIT * hp_mul
 	self.mobster.HEALTH_INIT = self.mobster.HEALTH_INIT * hp_mul
 	self.mobster_boss.HEALTH_INIT = self.mobster_boss.HEALTH_INIT * hp_mul
+	self.chavez_boss.HEALTH_INIT = self.chavez_boss.HEALTH_INIT * hp_mul
 	self.hector_boss.HEALTH_INIT = self.hector_boss.HEALTH_INIT * hp_mul
 	self.biker_boss.HEALTH_INIT = self.biker_boss.HEALTH_INIT * hp_mul
 	self.biker.HEALTH_INIT = self.biker.HEALTH_INIT * hp_mul
@@ -11281,6 +11457,9 @@ function CharacterTweakData:_multiply_all_hp(hp_mul, hs_mul)
 	if self.tank.headshot_dmg_mul then
 		self.tank.headshot_dmg_mul = self.tank.headshot_dmg_mul * hs_mul
 	end
+	if self.chavez_boss.headshot_dmg_mul then
+		self.chavez_boss.headshot_dmg_mul = self.chavez_boss.headshot_dmg_mul * hs_mul
+	end
 	if self.tank_hw.headshot_dmg_mul then
 		self.tank_hw.headshot_dmg_mul = self.tank_hw.headshot_dmg_mul * hs_mul
 	end
@@ -11332,6 +11511,7 @@ function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
 		"mobster_boss",
 		"biker_boss",
 		"hector_boss",
+		"chavez_boss",
 		"hector_boss_no_armor",
 		"tank",
 		"tank_hw",
@@ -11367,6 +11547,7 @@ function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
 	self.gangster.SPEED_RUN = self.gangster.SPEED_RUN * run_mul
 	self.mobster.SPEED_RUN = self.gangster.SPEED_RUN * run_mul
 	self.mobster_boss.SPEED_RUN = self.mobster_boss.SPEED_RUN * run_mul
+	self.chavez_boss.SPEED_RUN = self.chavez_boss.SPEED_RUN * run_mul
 	self.biker_boss.SPEED_RUN = self.biker_boss.SPEED_RUN * run_mul
 	self.hector_boss.SPEED_RUN = self.hector_boss.SPEED_RUN * run_mul
 	self.hector_boss_no_armor.SPEED_RUN = self.hector_boss_no_armor.SPEED_RUN * run_mul
@@ -11398,6 +11579,7 @@ function CharacterTweakData:_set_characters_weapon_preset(preset)
 		"biker",
 		"mobster",
 		"mobster_boss",
+		"chavez_boss",
 		"biker_boss",
 		"hector_boss",
 		"phalanx_vip"
@@ -11440,6 +11622,7 @@ function CharacterTweakData:_set_characters_melee_preset(preset)
 		"mobster",
 		"mobster_boss",
 		"biker_boss",
+		"chavez_boss",
 		"hector_boss",
 		"boom",
 		"rboom",
@@ -11823,6 +12006,13 @@ function CharacterTweakData:character_map()
 				"ene_biker_female_2",
 				"ene_biker_female_3",
 				"npc_male_mechanic"
+			}
+		},
+		flat = {
+			path = "units/pd2_dlc_flat/characters/",
+			list = {
+				"npc_chavez",
+				"npc_jamaican"
 			}
 		},
 		gitgud = {
