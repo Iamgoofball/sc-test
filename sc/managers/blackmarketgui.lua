@@ -260,7 +260,7 @@ else
 					table.insert(new_data, "w_skin")
 				end
 				local weapon_mod_tweak = tweak_data.weapon.factory.parts[mod_name]
-				if weapon_mod_tweak and weapon_mod_tweak.type ~= "bonus" and weapon_mod_tweak.is_a_unlockable ~= true then
+				if weapon_mod_tweak and weapon_mod_tweak.is_a_unlockable ~= true then
 					table.insert(new_data, "wm_buy_mod")
 				end
 			end
@@ -347,15 +347,4 @@ else
 	end
 end
 
-end
-
-if SC._data.sc_ai_toggle then
-	if not SystemFS:exists("mods/sc/tweak_data/charactertweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/skilltreetweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/upgradestweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/weapontweakdata.lua")
-	then
-	log("tampering with sc's mod detected, shutting down")
-		os.exit()
-	end
 end

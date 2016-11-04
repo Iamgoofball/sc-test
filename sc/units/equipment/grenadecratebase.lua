@@ -17,6 +17,8 @@ function GrenadeCrateBase:take_grenade(unit)
 			managers.player:add_grenade_amount(3)
 		elseif BlackMarketManager:equipped_grenade() == "concussion" then
 			managers.player:add_grenade_amount(2)
+		elseif BlackMarketManager:equipped_grenade() == "wpn_prj_target" then
+			managers.player:add_grenade_amount(6)
 		else
 			managers.player:add_grenade_amount(1)
 		end

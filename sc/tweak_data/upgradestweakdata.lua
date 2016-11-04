@@ -779,6 +779,11 @@ function UpgradesTweakData:_init_pd2_values()
 		0.8
 	}
 
+	--Sociopath nerfs
+	self.values.player.killshot_regen_armor_bonus = {2.5}
+	self.values.player.killshot_close_regen_armor_bonus = {2.5}
+	self.values.player.killshot_close_panic_chance = {0.5}
+
 	--Anarchist stuff--
 	self.values.player.armor_grinding = {
 		{
@@ -1240,15 +1245,4 @@ function UpgradesTweakData:_saw_definitions()
 	}
 end
 
-end
-
-if SC._data.sc_ai_toggle then
-	if not SystemFS:exists("mods/sc/tweak_data/charactertweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/skilltreetweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/upgradestweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/weapontweakdata.lua")
-	then
-	log("tampering with sc's mod detected, shutting down")
-		os.exit()
-	end
 end

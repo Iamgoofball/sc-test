@@ -1,44 +1,5 @@
 if SC._data.sc_player_weapon_toggle then
 
-function CopDamage:die(attack_data)
-	self._unit:sound():say("x02a_any_3p", true)
-	local variant = attack_data.variant
-	CopDamage.MAD_3_ACHIEVEMENT(attack_data)
-	self:_remove_debug_gui()
-	self._unit:base():set_slot(self._unit, 17)
-	if alive(managers.interaction:active_unit()) then
-		managers.interaction:active_unit():interaction():selected()
-	end
-	self:drop_pickup()
-	self._unit:inventory():drop_shield()
-	if self._unit:unit_data().mission_element then
-		self._unit:unit_data().mission_element:event("death", self._unit)
-		if not self._unit:unit_data().alerted_event_called then
-			self._unit:unit_data().alerted_event_called = true
-			self._unit:unit_data().mission_element:event("alerted", self._unit)
-		end
-	end
-	if self._unit:movement() then
-		self._unit:movement():remove_giveaway()
-	end
-	variant = variant or "bullet"
-	self._health = 0
-	self._health_ratio = 0
-	self._dead = true
-	self:set_mover_collision_state(false)
-	if self._death_sequence then
-		if self._unit:damage() and self._unit:damage():has_sequence(self._death_sequence) then
-			self._unit:damage():run_sequence_simple(self._death_sequence)
-		else
-			debug_pause_unit(self._unit, "[CopDamage:die] does not have death sequence", self._death_sequence, self._unit)
-		end
-	end
-	if self._unit:base():char_tweak().die_sound_event then
-		self._unit:sound():play(self._unit:base():char_tweak().die_sound_event, nil, nil)
-	end
-	self:_on_death()
-end
-
 	local mvec_1 = Vector3()
 	local mvec_2 = Vector3()
 	function CopDamage:damage_melee(attack_data)
@@ -252,16 +213,6 @@ function CopDamage:damage_bullet(attack_data)
 		return "friendly_fire"
 	end
 	local is_civilian = CopDamage.is_civilian(self._unit:base()._tweak_table)
-	local is_sentry = attack_data.attacker_unit:base() and attack_data.attacker_unit:base().sentry_gun
-	local weapon_category = attack_data.weapon_unit:base():weapon_tweak_data().category
-	local voice_chance = math.random(1,10)
-	if voice_chance == 1 then
-		if is_sentry and not weapon_category == "saw" then
-			managers.groupai:state():warn_about_stuff("sentry_gun")
-		elseif weapon_category == "saw" and not is_sentry then
-			managers.groupai:state():warn_about_stuff("saw")
-		end
-	end
 	if not is_civilian then
 		managers.player:send_message(Message.OnEnemyShot, nil, attack_data.attacker_unit, self._unit, attack_data and attack_data.variant or "bullet")
 	end
@@ -276,10 +227,11 @@ function CopDamage:damage_bullet(attack_data)
 			if attack_data.weapon_unit:base():got_silencer() then
 				armor_pierce_value = armor_pierce_value + managers.player:upgrade_value("weapon", "armor_piercing_chance_silencer", 0)
 			end
+			local weapon_category = attack_data.weapon_unit:base():weapon_tweak_data().category
 			if weapon_category == "saw" then
 				armor_pierce_value = armor_pierce_value + managers.player:upgrade_value("saw", "armor_piercing_chance", 0)
 			end
-		elseif is_sentry then
+		elseif attack_data.attacker_unit:base() and attack_data.attacker_unit:base().sentry_gun then
 			local owner = attack_data.attacker_unit:base():get_owner()
 			if alive(owner) then
 				if owner == managers.player:player_unit() then
@@ -469,9 +421,6 @@ function CopDamage:damage_explosion(attack_data)
 	local damage = attack_data.damage
 	if self._unit:base():char_tweak().DAMAGE_CLAMP_EXPLOSION then
 		damage = math.min(damage, self._unit:base():char_tweak().DAMAGE_CLAMP_EXPLOSION)
-	end
-	if attack_data.weapon_unit:base():get_name_id() == "trip_mine" then
-		managers.groupai:state():warn_about_stuff("trip")
 	end
 	damage = damage * (self._char_tweak.damage.explosion_damage_mul or 1)
 	damage = damage * (self._marked_dmg_mul or 1)
@@ -797,15 +746,4 @@ function CopDamage.is_hrt(type)
     return type == "swat" or type == "fbi" or type == "cop" or type == "security"
 end
 
-end
-
-if SC._data.sc_ai_toggle then
-	if not SystemFS:exists("mods/sc/tweak_data/charactertweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/skilltreetweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/upgradestweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/weapontweakdata.lua")
-	then
-	log("tampering with sc's mod detected, shutting down")
-		os.exit()
-	end
 end

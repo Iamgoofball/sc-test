@@ -86,9 +86,15 @@ if not tweak_data then return end
 
 	--Throwing Card--
 	tweak_data.projectiles.wpn_prj_ace.damage = 26.5
+	tweak_data.projectiles.wpn_prj_ace.adjust_z = 0
 
 	--Shuriken
 	tweak_data.projectiles.wpn_prj_four.damage = 23.5
+
+	--Throwing Knife--
+	tweak_data.projectiles.wpn_prj_target.damage = 26.5
+	tweak_data.projectiles.wpn_prj_target.adjust_z = 0
+	tweak_data.projectiles.wpn_prj_target.launch_speed = 2000
 
 	--Javelin--
 	tweak_data.projectiles.wpn_prj_jav.damage = 55
@@ -113,6 +119,44 @@ if not tweak_data then return end
 	tweak_data.projectiles.concussion.range = 1500
 	tweak_data.projectiles.concussion.duration = {min = 10, additional = 10}
 
+	--Had to include this in here due to some BS with it being in upgradestweakdata
+	tweak_data.upgrades.values.player.health_multiplier = {1.25, 1.5}
+	tweak_data.upgrades.values.trip_mine.quantity = {3, 7}
+
+	--But why--
+	tweak_data.team_ai.stop_action.delay = 0.8
+	tweak_data.team_ai.stop_action.distance = 9999999999999999999999999999999999
+
+	tweak_data.medic.cooldown = 20
+	tweak_data.radius = 700
+	tweak_data.medic.disabled_units = {
+		"biker",
+		"mobster",
+		"tank_hw",
+		"mobster_boss",
+		"biker_boss",
+		"hector_boss",
+		"hector_boss_no_armor",
+		"chavez_boss",
+		"gangster"
+	}
+
+	end
+
+	if SC._data.sc_player_weapon_toggle then
+
+	tweak_data.achievement.complete_heist_achievements.daily_akimbo = {
+			trophy_stat = "daily_akimbo",
+			total_accuracy = 80,
+			equipped_outfit = {primary_category = "pistol", sub_category = "akimbo"},
+			equipped = {
+				secondaries = {
+					category = "pistol",
+					blueprint_part_data = {sub_type = "silencer"}
+				}
+			}
+		}
+
 	tweak_data.player.stances.msr.steelsight.shakers.breathing.amplitude = 0
 	tweak_data.player.stances.r93.steelsight.shakers.breathing.amplitude = 0
 	tweak_data.player.stances.m95.steelsight.shakers.breathing.amplitude = 0
@@ -121,20 +165,4 @@ if not tweak_data then return end
 	tweak_data.player.stances.wa2000.steelsight.shakers.breathing.amplitude = 0
 	tweak_data.player.stances.model70.steelsight.shakers.breathing.amplitude = 0
 
-	--Had to include this in here due to some BS with it being in upgradestweakdata
-	tweak_data.upgrades.values.player.health_multiplier = {1.25, 1.5}
-	tweak_data.upgrades.values.trip_mine.quantity = {3, 7}
-
 	end
-
-
-if SC._data.sc_ai_toggle then
-	if not SystemFS:exists("mods/sc/tweak_data/charactertweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/skilltreetweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/upgradestweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/weapontweakdata.lua")
-	then
-	log("tampering with sc's mod detected, shutting down")
-		os.exit()
-	end
-end

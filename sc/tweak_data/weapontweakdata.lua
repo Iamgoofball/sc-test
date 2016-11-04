@@ -86,26 +86,24 @@ function WeaponTweakData:_set_overkill_145()
 end
 
 function WeaponTweakData:_set_easy_wish()
-	self.swat_van_turret_module.HEALTH_INIT = 32375
-	self.swat_van_turret_module.SHIELD_HEALTH_INIT = 700
+	self.swat_van_turret_module.HEALTH_INIT = 29600
+	self.swat_van_turret_module.SHIELD_HEALTH_INIT = 640
 	self.swat_van_turret_module.CLIP_SIZE = 800
-	self.swat_van_turret_module.BAG_DMG_MUL = 75
+	self.swat_van_turret_module.BAG_DMG_MUL = 90
 	self.swat_van_turret_module.DAMAGE_MUL_RANGE = {
-		{1000, 3.125},
-		{2000, 3.125},
-		{3000, 3.125},
-		{4000, 1.25}
+		{1000, 2.875},
+		{1800, 2.625},
+		{3000, 1.05}
 	}
 	self.ceiling_turret_module.DAMAGE_MUL_RANGE = {
-		{1000, 3.125},
-		{2000, 3.125},
-		{3000, 3.125},
-		{4000, 1.25}
+		{1000, 2.875},
+		{1800, 2.625},
+		{3000, 1.05}
 	}
 	self.ceiling_turret_module.CLIP_SIZE = 800
-	self.ceiling_turret_module.HEALTH_INIT = 16187.5
-	self.ceiling_turret_module.BAG_DMG_MUL = 75
-	self.ceiling_turret_module.SHIELD_HEALTH_INIT = 350
+	self.ceiling_turret_module.HEALTH_INIT = 14800
+	self.ceiling_turret_module.BAG_DMG_MUL = 90
+	self.ceiling_turret_module.SHIELD_HEALTH_INIT = 320
 end
 
 function WeaponTweakData:_set_overkill_290()
@@ -131,17 +129,18 @@ function WeaponTweakData:_set_overkill_290()
 	self.ceiling_turret_module.SHIELD_HEALTH_INIT = 350
 
 	--DW Damage values below--
-	self.c45_npc.DAMAGE = 2.3
-	self.mp5_npc.DAMAGE = 2.3
-	self.mp9_npc.DAMAGE = 2.3
-	self.sr2_smg_npc.DAMAGE = 2.3
+	self.c45_npc.DAMAGE = 2.1
+	self.mp5_npc.DAMAGE = 2
+	self.mp9_npc.DAMAGE = 2
+	self.sr2_smg_npc.DAMAGE = 2
+	self.x_c45_npc.DAMAGE = 2.1
 end
 
 function WeaponTweakData:_set_sm_wish()
 	self.swat_van_turret_module.HEALTH_INIT = 37000
 	self.swat_van_turret_module.SHIELD_HEALTH_INIT = 800
 	self.swat_van_turret_module.CLIP_SIZE = 800
-	self.swat_van_turret_module.BAG_DMG_MUL = 100
+	self.swat_van_turret_module.BAG_DMG_MUL = 90
 	self.swat_van_turret_module.DAMAGE_MUL_RANGE = {
 		{1000, 3.125},
 		{2000, 3.125},
@@ -156,14 +155,15 @@ function WeaponTweakData:_set_sm_wish()
 	}
 	self.ceiling_turret_module.CLIP_SIZE = 800
 	self.ceiling_turret_module.HEALTH_INIT = 18500
-	self.ceiling_turret_module.BAG_DMG_MUL = 100
+	self.ceiling_turret_module.BAG_DMG_MUL = 90
 	self.ceiling_turret_module.SHIELD_HEALTH_INIT = 400
 
 	--OD Damage values below--
-	self.c45_npc.DAMAGE = 2.3
-	self.mp5_npc.DAMAGE = 2.3
-	self.mp9_npc.DAMAGE = 2.3
-	self.sr2_smg_npc.DAMAGE = 2.3
+	self.c45_npc.DAMAGE = 2.1
+	self.mp5_npc.DAMAGE = 2
+	self.mp9_npc.DAMAGE = 2
+	self.sr2_smg_npc.DAMAGE = 2
+	self.x_c45_npc.DAMAGE = 2.1
 end
 
 function WeaponTweakData:_init_data_npc_melee()
@@ -238,7 +238,7 @@ end
 function WeaponTweakData:_init_data_x_c45_npc()
 	self.x_c45_npc.sounds.prefix = "c45_npc"
 	self.x_c45_npc.use_data.selection_index = 1
-	self.x_c45_npc.DAMAGE = 2.3
+	self.x_c45_npc.DAMAGE = 1.8
 	self.x_c45_npc.muzzleflash = "effects/payday2/particles/weapons/9mm_auto"
 	self.x_c45_npc.muzzleflash_silenced = "effects/payday2/particles/weapons/9mm_auto_silence"
 	self.x_c45_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_9mm"
@@ -398,9 +398,17 @@ function WeaponTweakData:_init_data_mp5_npc()
 	self.mp5_tactical_npc.alert_size = 500
 	self.mp5_tactical_npc.suppression = 0.1
 	self.ump_npc = deep_clone(self.mp5_npc)
-	self.ump_npc.DAMAGE = 2.3
+	self.ump_npc.DAMAGE = 2.8
 	self.ump_npc.auto.fire_rate = 0.083
 	self.ump_npc.sounds.prefix = "akm_npc"
+	self.ump_npc.CLIP_AMMO_MAX = 25
+	self.asval_smg_npc = deep_clone(self.mp5_npc)
+	self.asval_smg_npc.DAMAGE = 7.5
+	self.asval_smg_npc.has_suppressor = "suppressed_a"
+	self.asval_smg_npc.auto.fire_rate = 0.07843137254
+	self.asval_smg_npc.CLIP_AMMO_MAX = 20
+	self.asval_smg_npc.suppression = 2.8
+	self.asval_smg_npc.usage = "m4"
 	self.akmsu_smg_npc = deep_clone(self.mp5_npc)
 end
 
@@ -1229,12 +1237,12 @@ end
 
 Hooks:PostHook( WeaponTweakData, "init", "SC_weapons", function(self)
 
-	local tact_rel = {'deagle','colt_1911','usp','p226','g22c','glock_17','glock_18c','b92fs','ppk','mp9','new_mp5','mp7','p90','olympic','akmsu','akm','akm_gold','ak74','m16','amcar','new_m4','ak5','s552','g36','aug','saiga','new_m14','scar','fal','rpk','msr','r93','m95','famas','galil','g3','scorpion','benelli','serbu','r870','ksg','g26','spas12','l85a2','vhs','hs2000','tec9','asval','sub2000','polymer','wa2000','model70','sparrow','m37','sr2','pl14','tecci','hajk','boot'}
+	local tact_rel = {'deagle','colt_1911','usp','p226','g22c','glock_17','glock_18c','b92fs','ppk','mp9','new_mp5','mp7','p90','olympic','akmsu','akm','akm_gold','ak74','m16','amcar','new_m4','ak5','s552','g36','aug','saiga','new_m14','scar','fal','rpk','msr','r93','m95','famas','galil','g3','scorpion','benelli','serbu','r870','ksg','g26','spas12','l85a2','vhs','hs2000','tec9','asval','sub2000','polymer','wa2000','model70','sparrow','m37','sr2','pl14','tecci','hajk','boot','packrat','schakal','desertfox'}
 	for i, wep_id in ipairs(tact_rel) do
 			self[wep_id].tactical_reload = true
 			self[wep_id].has_description = false
 	end
-	local tact_akimbo_pistol = {'x_deagle','x_1911','x_b92fs','jowi','x_usp','x_g17','x_g22c'}
+	local tact_akimbo_pistol = {'x_deagle','x_1911','x_b92fs','jowi','x_usp','x_g17','x_g22c','x_packrat'}
 	for i, wep_id in ipairs(tact_akimbo_pistol) do
 		self[wep_id].tactical_akimbo = true
 		self[wep_id].recategorize = "akimbo"
@@ -3020,8 +3028,6 @@ Hooks:PostHook( WeaponTweakData, "init", "SC_weapons", function(self)
 	self.mg42.spread.moving_standing = 4
 	self.mg42.spread.moving_crouching = 3
 	self.mg42.spread.moving_steelsight = 2
-	self.mg42.timers.reload_not_empty = 4
-	self.mg42.timers.reload_empty = 4
 	self.mg42.kick.standing = self.new_m4.kick.standing
 	self.mg42.kick.crouching = self.new_m4.kick.standing
 	self.mg42.kick.steelsight = self.new_m4.kick.standing
@@ -4376,11 +4382,119 @@ Hooks:PostHook( WeaponTweakData, "init", "SC_weapons", function(self)
 	}
 	self.boot.panic_suppression_chance = 0.0
 	self.boot.stats_modifiers = {damage = 1}
-	self.rota.upgrade_blocks = {
-		weapon = {
-			"clip_ammo_increase"
-		}
+	self.packrat.AMMO_MAX = 150
+	self.packrat.AMMO_PICKUP = self:_pickup_chance(150, 1)
+	self.packrat.fire_mode_data.fire_rate = 0.07058823529
+	self.packrat.single.fire_rate = 0.07058823529
+	self.packrat.spread.standing = 3.5
+	self.packrat.spread.crouching = 2.5
+	self.packrat.spread.steelsight = 1
+	self.packrat.spread.moving_standing = 4
+	self.packrat.spread.moving_crouching = 3
+	self.packrat.spread.moving_steelsight = 2
+	self.packrat.kick.standing = self.glock_17.kick.standing
+	self.packrat.kick.crouching = self.glock_17.kick.standing
+	self.packrat.kick.steelsight = self.glock_17.kick.standing
+	self.packrat.panic_suppression_chance = 0.0
+	self.packrat.stats = {
+		damage = 28,
+		spread = 18,
+		recoil = 20,
+		spread_moving = 7,
+		zoom = 1,
+		concealment = 29,
+		suppression = 9,
+		alert_size = 9,
+		extra_ammo = 6,
+		total_ammo_mod = 21,
+		value = 1
 	}
+	self.schakal.fire_mode_data.fire_rate = 0.1
+	self.schakal.auto.fire_rate = 0.1
+	self.schakal.AMMO_MAX = 90
+	self.schakal.CLIP_AMMO_MAX = 25
+	self.schakal.AMMO_PICKUP = self:_pickup_chance(90, 1)
+	self.schakal.spread.standing = 3.5
+	self.schakal.spread.crouching = 2.5
+	self.schakal.spread.steelsight = 1
+	self.schakal.spread.moving_standing = 4
+	self.schakal.spread.moving_crouching = 3
+	self.schakal.spread.moving_steelsight = 2
+	self.schakal.kick.standing = self.new_m4.kick.standing
+	self.schakal.kick.crouching = self.new_m4.kick.standing
+	self.schakal.kick.steelsight = self.new_m4.kick.standing
+	self.schakal.panic_suppression_chance = 0.1
+	self.schakal.stats = {
+		damage = 46,
+		spread = 18,
+		recoil = 17,
+		spread_moving = 14,
+		zoom = 3,
+		concealment = 24,
+		suppression = 7,
+		alert_size = 7,
+		extra_ammo = 6,
+		total_ammo_mod = 21,
+		value = 1
+	}
+	self.desertfox.has_description = true
+	self.desertfox.desc_id = "bm_ap_weapon_sc_desc"
+	self.desertfox.CLIP_AMMO_MAX = 5
+	self.desertfox.AMMO_MAX = 30
+	self.desertfox.AMMO_PICKUP = self:_pickup_chance(30, 2)
+	self.desertfox.fire_mode_data.fire_rate = 1
+	self.desertfox.spread.standing = 3.5
+	self.desertfox.spread.crouching = 2.5
+	self.desertfox.spread.steelsight = 1
+	self.desertfox.spread.moving_standing = 4
+	self.desertfox.spread.moving_crouching = 3
+	self.desertfox.spread.moving_steelsight = 2
+	self.desertfox.kick.standing = self.r870.kick.standing
+	self.desertfox.kick.crouching = self.r870.kick.standing
+	self.desertfox.kick.steelsight = self.r870.kick.standing
+	self.desertfox.panic_suppression_chance = 0.0
+	self.desertfox.stats = {
+		damage = 250,
+		spread = 21,
+		recoil = 7,
+		spread_moving = 8,
+		zoom = 1,
+		concealment = 19,
+		suppression = 3,
+		alert_size = 3,
+		extra_ammo = 6,
+		total_ammo_mod = 21,
+		value = 10
+	}
+	self.desertfox.stats_modifiers = {damage = 1}
+	self.x_packrat.AMMO_MAX = 180
+	self.x_packrat.AMMO_PICKUP = self:_pickup_chance(180, 2)
+	self.x_packrat.fire_mode_data.fire_rate = 0.07058823529
+	self.x_packrat.single.fire_rate = 0.07058823529
+	self.x_packrat.spread.standing = 3.5
+	self.x_packrat.spread.crouching = 2.5
+	self.x_packrat.spread.steelsight = 1
+	self.x_packrat.spread.moving_standing = 4
+	self.x_packrat.spread.moving_crouching = 3
+	self.x_packrat.spread.moving_steelsight = 2
+	self.x_packrat.kick.standing = self.glock_17.kick.standing
+	self.x_packrat.kick.crouching = self.glock_17.kick.standing
+	self.x_packrat.kick.steelsight = self.glock_17.kick.standing
+	self.x_packrat.panic_suppression_chance = 0.0
+	self.x_packrat.stats = {
+		damage = 28,
+		spread = 18,
+		recoil = 20,
+		spread_moving = 7,
+		zoom = 1,
+		concealment = 29,
+		suppression = 9,
+		alert_size = 9,
+		extra_ammo = 6,
+		total_ammo_mod = 21,
+		value = 1
+	}
+	self.rota.upgrade_blocks = nil
 	self.rota.AMMO_MAX = 60
 	self.rota.AMMO_PICKUP = self:_pickup_chance(60, 1)
 	self.rota.spread.standing = 3.5
@@ -4674,16 +4788,4 @@ function WeaponTweakData:_create_table_structure()
 		use_data = {},
 		auto = {}
 	}
-end
-
-
-if SC._data.sc_ai_toggle then
-	if not SystemFS:exists("mods/sc/tweak_data/charactertweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/skilltreetweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/upgradestweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/weapontweakdata.lua")
-	then
-	log("tampering with sc's mod detected, shutting down")
-		os.exit()
-	end
 end

@@ -24,6 +24,8 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 	self.projectiles.wpn_prj_four.repeat_expire_t = 0.5
 	self.projectiles.wpn_prj_ace.max_amount = 6
 	self.projectiles.wpn_prj_ace.repeat_expire_t = 0.5
+	self.projectiles.wpn_prj_target.repeat_expire_t = 0.5
+	self.projectiles.wpn_prj_target.throw_allowed_expire_t = 0.15
 end
 
 local old_weapon_skins = BlackMarketTweakData._init_weapon_skins

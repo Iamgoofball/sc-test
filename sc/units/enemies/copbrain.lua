@@ -40,7 +40,6 @@ function CopBrain:init(unit)
 	CopBrain._logic_variants.fbi_swat_vet = security_variant
 	CopBrain._logic_variants.boom = security_variant
 	CopBrain._logic_variants.rboom = security_variant
-	CopBrain._logic_variants.city_swat_vet = security_variant
 	CopBrain._logic_variants.fbi_vet = security_variant
 	CopBrain._logic_variants.spring = security_variant
 	CopBrain._logic_variants.spring.phalanx = CopLogicPhalanxVip
@@ -60,15 +59,4 @@ Hooks:PostHook(CopBrain, "convert_to_criminal", "SCCopBrainDoConvert", function(
     
 end)
 
-end
-
-if SC._data.sc_ai_toggle then
-	if not SystemFS:exists("mods/sc/tweak_data/charactertweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/skilltreetweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/upgradestweakdata.lua")
-	or not SystemFS:exists("mods/sc/tweak_data/weapontweakdata.lua")
-	then
-	log("tampering with sc's mod detected, shutting down")
-		os.exit()
-	end
 end

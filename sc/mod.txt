@@ -3,11 +3,11 @@
 	"description" : "A collection of modifications by SC."
 	"author" : "SC",
 	"contact" : "id/EssCee/",
-	"version" : "6.2",
+	"version" : "6.4",
 	"priority" : 201,
 	"updates" : [
 		{
-			"revision" : 62,
+			"revision" : 64,
 			"identifier" : "scmod",
 			"install_dir" : "."
 		}
@@ -22,6 +22,9 @@
 	"hooks" : [
 		{ 	"hook_id" : "lib/managers/mission/elementspawnenemygroup",
 			"script_path" : "managers/mission/elementspawnenemygroup.lua"
+		},
+		{ 	"hook_id" : "lib/managers/mission/elementpointofnoreturn",
+			"script_path" : "managers/mission/elementpointofnoreturn.lua"
 		},
 		{ 	"hook_id" : "lib/tweak_data/charactertweakdata",
 			"script_path" : "core.lua"
@@ -196,12 +199,6 @@
 		},
 		{ 	"hook_id" : "lib/units/enemies/cop/logics/coplogicintimidated",
 			"script_path" : "units/enemies/logics/coplogicintimidated.lua"
-		},
-		{ 	"hook_id" : "lib/units/enemies/cop/logics/coplogicbase",
-			"script_path" : "units/enemies/logics/coplogicbase.lua"
-		},
-		{ 	"hook_id" : "lib/units/enemies/cop/logics/coplogicattack",
-			"script_path" : "units/enemies/logics/coplogicattack.lua"
 		},
 		{ 	"hook_id" : "lib/units/enemies/cop/logics/coplogicphalanxvip",
 			"script_path" : "units/enemies/logics/coplogicphalanxvip.lua"
